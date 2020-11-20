@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import {connect} from "react-redux";
+import {HashRouter, Route} from "react-router-dom";
+import HomePage from "./Components/HomePage";
+import Books from "./Components/Books";
+import BookDetails from "./Components/BookDetails";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+    render() {
+        return (
+            <HashRouter>
+                <Route exact path='/' component={HomePage}/>
+                <Route exact path='/books' component={Books}/>
+                <Route path='/book-details/:id' component={BookDetails}/>
+
+                <p onClick={this.props.onIncrementCounter}>
+                    {this.props.counter}</p>
+            </HashRouter>
+        );
+    }
 }
 
-export default App;
+//display state on screen
+const mapStateToProps = (state) => {
+    return {
+        counter: state.counter
+    }
+}
+
+//functions
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
+        onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
+        onAddCounter: () => dispatch({type: 'ADD', val: 10}),
+        onSubtract: () => dispatch({type: 'SUBTRACT', val: 15}),
+        onStoreResult: () => dispatch({type: 'STORE_RESULT'}),
+        onDeleteResult: () => dispatch({type: 'Delete_RESULT'})
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
