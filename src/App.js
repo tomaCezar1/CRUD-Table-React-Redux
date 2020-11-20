@@ -2,9 +2,8 @@ import React from "react";
 import './App.css';
 import {HashRouter, Route} from "react-router-dom";
 import HomePage from "./Components/HomePage";
-import Books from "./Components/Books";
 import BookDetails from "./Components/BookDetails";
-
+import Books from "./Components/Books";
 
 class App extends React.Component {
     render() {

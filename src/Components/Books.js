@@ -2,54 +2,8 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-
 class Books extends Component {
 
-    //Functions
-    // handleAuthorInput = (e, tabIndex, type) => {
-    //     if (type === 'author') {
-    //         this.setState(state => {
-    //             const list = [...state.list]
-    //             list[tabIndex].author = e.target.value;
-    //             return {
-    //                 list
-    //             }
-    //         })
-    //         console.log(tabIndex)
-    //     }
-    //     if (type === 'title') {
-    //         this.setState(state => {
-    //             const list = [...state.list]
-    //             list[tabIndex].title = e.target.value;
-    //             return {
-    //                 list
-    //             }
-    //         })
-    //         console.log(tabIndex)
-    //     }
-    //     if (type === 'price') {
-    //         this.setState(state => {
-    //             const list = [...state.list]
-    //             list[tabIndex].price = e.target.value;
-    //             return {
-    //                 list
-    //             }
-    //         })
-    //         console.log(tabIndex)
-    //     }
-    // }
-    //
-    // onButtonClick = (index) => {
-    //     let clicked = this.state.list[index].isClicked;
-    //     let listCopy = this.state.list;
-    //     listCopy[index].isClicked = !clicked;
-    //     let firstLoad = true;
-    //     this.setState({
-    //         list: listCopy,
-    //         firstLoad: firstLoad
-    //     })
-    //     console.log(clicked, firstLoad)
-    // }
     handleChange = ({target: {value}}, index, field) => {
         const {updateInput} = this.props;
         console.log(index, field)
@@ -60,14 +14,6 @@ class Books extends Component {
         const {updateEdit} = this.props;
         updateEdit(index)
         console.log(index)
-    }
-
-    deleteRow2 = (index) => {
-        alert('Confirm?');
-        const newRows = this.state.list.slice(0, index).concat(this.state.list.slice(index + 1));
-        this.setState({
-            list: newRows
-        })
     }
 
     deleteRow = (e, index) => {
@@ -105,7 +51,6 @@ class Books extends Component {
                            onChange={this.props.list[index].isClicked ?
                                (e) => this.handleChange(e, index, 'price')
                                : null}
-                        // this.props.firstLoad ?
                     />
                 </td>
                 <td key={index + 4}>
@@ -124,7 +69,6 @@ class Books extends Component {
         return (
             <div className='books'>
                 <Link to='/'> Home</Link>
-
                 <h1>Books</h1>
                 <hr/>
                 <table>
@@ -138,7 +82,6 @@ class Books extends Component {
                     {rows}
                     </tbody>
                 </table>
-
             </div>
         );
     }
@@ -163,3 +106,56 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);
+
+//Functions
+// handleAuthorInput = (e, tabIndex, type) => {
+//     if (type === 'author') {
+//         this.setState(state => {
+//             const list = [...state.list]
+//             list[tabIndex].author = e.target.value;
+//             return {
+//                 list
+//             }
+//         })
+//         console.log(tabIndex)
+//     }
+//     if (type === 'title') {
+//         this.setState(state => {
+//             const list = [...state.list]
+//             list[tabIndex].title = e.target.value;
+//             return {
+//                 list
+//             }
+//         })
+//         console.log(tabIndex)
+//     }
+//     if (type === 'price') {
+//         this.setState(state => {
+//             const list = [...state.list]
+//             list[tabIndex].price = e.target.value;
+//             return {
+//                 list
+//             }
+//         })
+//         console.log(tabIndex)
+//     }
+// }
+//
+// onButtonClick = (index) => {
+//     let clicked = this.state.list[index].isClicked;
+//     let listCopy = this.state.list;
+//     listCopy[index].isClicked = !clicked;
+//     let firstLoad = true;
+//     this.setState({
+//         list: listCopy,
+//         firstLoad: firstLoad
+//     })
+//     console.log(clicked, firstLoad)
+// }
+// deleteRow = (index) => {
+//     alert('Confirm?');
+//     const newRows = this.state.list.slice(0, index).concat(this.state.list.slice(index + 1));
+//     this.setState({
+//         list: newRows
+//     })
+// }
