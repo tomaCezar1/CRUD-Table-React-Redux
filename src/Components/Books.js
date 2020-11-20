@@ -123,7 +123,6 @@ class Books extends Component {
 
         return (
             <div className='books'>
-                {/*<Link to='/book-details'> View</Link>*/}
                 <Link to='/'> Home</Link>
 
                 <h1>Books</h1>

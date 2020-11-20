@@ -65,7 +65,8 @@ const reducer = (state = initialState, action) => {
     if (action.type === "DELETE") {
         alert('Confirm?');
         const newList3 = [...state.list];
-        newList3.slice(0, action.index).concat(state.list.slice(action.index + 1));
+        newList3.splice(action.index,1)
+        // newList3.slice(0, action.index).concat(state.list.slice(action.index + 1));
         return {
             ...state,
             list: newList3
